@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.funcalc.MainActivity">
+    <item
+        android:id="@+id/action_switch_to_basic"
+        android:orderInCategory="100"
+        android:title="@string/action_switch_to_basic"
+        app:showAsAction="never" />
+</menu>
