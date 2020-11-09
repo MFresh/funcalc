@@ -44,7 +44,7 @@ class BasicCalcFragment : Fragment() {
             R.id.action_switch_to_scientific -> {
 
                 findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-                truexx
+                true
             }
             else -> super.onOptionsItemSelected(item)
         }
