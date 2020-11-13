@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'feature1', credentialsId: 'jenkins-github-integration', url: 'https://github.com/MFresh/funcalc.git'
+            }
+        }
+    }
+}
