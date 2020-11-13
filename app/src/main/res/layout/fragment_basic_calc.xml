@@ -218,7 +218,7 @@
             android:textColor="@color/orange_700"
             android:textSize="32sp"
             android:textStyle="bold"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="@color/orange_700"
             app:backgroundTintMode="src_over"
             app:cornerRadius="0dp"
             app:elevation="0dp"
