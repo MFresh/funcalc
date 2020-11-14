@@ -38,7 +38,7 @@ pipeline {
 
         success{
                 slackSend channel: '#builds',
-                message: "Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'",
+                message: "'${env.JOB_NAME}' - '${BUILD_NUMBER}' finished with status: '${currentBuild.currentResult}'",
                 color: 'good'
         }
 
