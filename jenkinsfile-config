@@ -24,7 +24,7 @@ pipeline {
         stage('Slack it'){
             steps {
                  slackSend channel: '#builds',
-                 message: 'Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'.'
+                 message: "Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'"
             }
         }
 
