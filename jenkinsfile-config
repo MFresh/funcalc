@@ -12,22 +12,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Git Checkout') {
-            steps {
-                git branch: 'feature1', credentialsId: 'jenkins-github-integration', url: 'https://github.com/MFresh/funcalc.git'
+
+        stage('Slack - Notify Start Build'){
+                steps {
+                     slackSend channel: '#builds',
+                     message: "Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'"
+                }
             }
-        }
 
         stage('Gradle Build') {
             steps {
                 sh './gradlew build'
-            }
-        }
-
-        stage('Slack it'){
-            steps {
-                 slackSend channel: '#builds',
-                 message: "Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'"
             }
         }
 
