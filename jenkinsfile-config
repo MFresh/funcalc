@@ -1,12 +1,4 @@
 // Definitions here
-    def COLOR_MAP = [
-        'SUCCESS': 'good',
-        'FAILURE': 'danger',
-    ]
-
-    def getBuildUser() {
-        return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
-    }
 
 pipeline {
 
@@ -34,9 +26,6 @@ pipeline {
 
         stage('Slack it'){
             steps {
-                script {
-                    BUILD_USER = getBuildUser()
-                }
                  slackSend channel: '#builds',
                  message: "Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'"
             }
@@ -44,4 +33,17 @@ pipeline {
 
 
     }
+
+    post{
+
+        success{
+                slackSend channel: '#builds',
+                message: "Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'",
+                color: 'good'
+        }
+
+
+    }
+
+
 }
