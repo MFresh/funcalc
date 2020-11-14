@@ -38,12 +38,12 @@ pipeline {
 
         success{
                 slackSend channel: '#builds',
-                message: "'${env.JOB_NAME}' - '${BUILD_NUMBER}' finished with status: *${currentBuild.currentResult}*. For build info: '${BUILD_URL}'",
+                message: "${env.JOB_NAME} - ${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
                 color: 'good'
         }
         failure{
                 slackSend channel: '#builds',
-                message: "'${env.JOB_NAME}' - '${BUILD_NUMBER}' finished with status: *${currentBuild.currentResult}*",
+                message: "${env.JOB_NAME} - ${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
                 color: 'danger'
         }
 
