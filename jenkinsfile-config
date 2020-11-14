@@ -10,6 +10,13 @@
 
 pipeline {
 
+// Set up local variables for your pipeline
+    environment {
+        // test variable: 0=success, 1=fail; must be string
+        doError = '0'
+        BUILD_USER = ''
+    }
+
     agent any
 
     stages {
@@ -27,6 +34,9 @@ pipeline {
 
         stage('Slack it'){
             steps {
+                script {
+                    BUILD_USER = getBuildUser()
+                }
                  slackSend channel: '#builds',
                  message: "Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'"
             }
