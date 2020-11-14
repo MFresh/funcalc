@@ -16,7 +16,7 @@ pipeline {
         stage('Slack - Notify Start Build'){
                 steps {
                      slackSend channel: '#builds',
-                     message: "Started Build '${env.JOB_NAME}' with build '${BUILD_NUMBER}'"
+                     message: "Started ${env.JOB_NAME} with build #${BUILD_NUMBER}"
                 }
             }
 
@@ -33,12 +33,12 @@ pipeline {
 
         success{
                 slackSend channel: '#builds',
-                message: "${env.JOB_NAME} - ${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
+                message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
                 color: 'good'
         }
         failure{
                 slackSend channel: '#builds',
-                message: "${env.JOB_NAME} - ${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
+                message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
                 color: 'danger'
         }
 
