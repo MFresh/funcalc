@@ -29,7 +29,7 @@ pipeline {
         stage('Git - Merge to Integration Branch') {
                     steps {
                         sh 'git merge feature1'
-                        sh 'git commit -am "Merged feature1 branch to integration"
+                        sh 'git commit -am "Merged feature1 branch to integration"'
                         sh "git push origin integration"
                     }
                 }
