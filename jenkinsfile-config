@@ -1,10 +1,10 @@
-pipeline {
-
-    // Definitions here
+// Definitions here
     def COLOR_MAP = [
         'SUCCESS': 'good',
         'FAILURE': 'danger',
     ]
+
+pipeline {
 
     agent any
 
