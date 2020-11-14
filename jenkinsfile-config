@@ -6,6 +6,7 @@ pipeline {
             steps {
                 git branch: 'feature1', credentialsId: 'jenkins-github-integration', url: 'https://github.com/MFresh/funcalc.git'
             }
+        }
 
         stage('Gradle Build') {
             steps {
