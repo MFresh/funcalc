@@ -27,12 +27,18 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-                    steps {
-                        withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonarqube_integration') {
-                            sh './gradlew sonarqube'
-                        }
-                    }
-                }
+            steps {
+                  withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonarqube_integration') {
+                    sh './gradlew sonarqube'
+                  }
+            }
+        }
+
+        stage("Quality Gates Check") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
 
 
     }
