@@ -39,7 +39,7 @@ pipeline {
                         appCenter apiToken: 'f1e91523c76ccd9caa11a3e5894f78efc72bcdf9',
                         appName: 'FunCalc',
                         distributionGroups: 'Collaborators',
-                        ownerName: 'mfresco95@gmail.com',
+                        ownerName: 'https://appcenter.ms/users/mfresco95-gmail.com',
                         pathToApp: 'app/build/outputs/apk/debug/app-debug.apk'
                     }
                 }
