@@ -37,9 +37,9 @@ pipeline {
         stage('Publish to App Center') {
                     steps {
                         appCenter apiToken: 'f1e91523c76ccd9caa11a3e5894f78efc72bcdf9',
-                        appName: 'https://appcenter.ms/users/mfresco95-gmail.com/apps/FunCalc',
+                        appName: 'FunCalc',
                         distributionGroups: 'testers',
-                        ownerName: 'https://appcenter.ms/users/mfresco95-gmail.com',
+                        ownerName: 'mfresco95-gmail.com',
                         pathToApp: 'app/build/outputs/apk/debug/app-debug.apk'
                     }
                 }
