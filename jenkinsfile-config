@@ -36,7 +36,7 @@ pipeline {
 
         stage('Publish to App Center') {
                     steps {
-                        appCenter apiToken: f1e91523c76ccd9caa11a3e5894f78efc72bcdf9, appName: 'FunCalc', buildVersion: '',
+                        appCenter apiToken: 'f1e91523c76ccd9caa11a3e5894f78efc72bcdf9', appName: 'FunCalc', buildVersion: '',
                         distributionGroups: 'Collaborators', notifyTesters: true, ownerName: 'MFresh',
                         pathToApp: 'app/build/outputs/apk/debug/app-debug.apk', pathToDebugSymbols: '', pathToReleaseNotes: '',
                         releaseNotes: 'Test first release'
