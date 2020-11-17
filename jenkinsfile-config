@@ -35,7 +35,10 @@ pipeline {
         }
 
         stage('Manual Approval - To Deploy?'){
-            input message: "Deploy to prod?"
+            steps {
+                input message: "Deploy to prod?"
+            }
+
         }
 
         stage('Publish to App Center') {
