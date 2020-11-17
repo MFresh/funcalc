@@ -41,6 +41,13 @@ pipeline {
 
         }
 
+        stage('Git - Merge to Master'){
+            steps {
+                sh "git merge origin/master"
+            }
+
+        }
+
         stage('Publish to App Center') {
                     steps {
                         appCenter apiToken: 'f1e91523c76ccd9caa11a3e5894f78efc72bcdf9',
