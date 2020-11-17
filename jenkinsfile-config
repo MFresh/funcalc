@@ -43,6 +43,8 @@ pipeline {
 
         stage('Git - Merge to Master'){
             steps {
+                sh "git branch feature1"
+                sh "git checkout origin/master"
                 sh "git merge feature1"
                 sh "git push origin/master"
             }
