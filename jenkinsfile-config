@@ -34,12 +34,6 @@ pipeline {
             }
         }
 
-        stage("Quality gate") {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
-
         stage('Manual Approval - To Deploy?'){
             steps {
                 input message: "Deploy to prod?"
@@ -51,7 +45,8 @@ pipeline {
 
         stage('Git - Merge to Master'){
             steps {
-                sh "git fetch"
+                sh "git fetch origin/feature1"
+                sh "git fetch origin/master"
                 sh "git branch"
             }
 
