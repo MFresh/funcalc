@@ -34,6 +34,12 @@ pipeline {
             }
         }
 
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+
         stage('Manual Approval - To Deploy?'){
             steps {
                 input message: "Deploy to prod?"
