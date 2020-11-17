@@ -34,6 +34,10 @@ pipeline {
             }
         }
 
+        stage('Manual Approval - To Deploy?'){
+            input "Deploy to prod?"
+        }
+
         stage('Publish to App Center') {
                     steps {
                         appCenter apiToken: 'f1e91523c76ccd9caa11a3e5894f78efc72bcdf9',
@@ -43,12 +47,6 @@ pipeline {
                         pathToApp: 'app/build/outputs/apk/debug/app-debug.apk'
                     }
                 }
-
-        stage("Quality Gates Check") {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
 
 
     }
