@@ -45,8 +45,7 @@ pipeline {
 
         stage('Git - Merge to Master'){
             steps {
-                sh "git fetch origin/feature1"
-                sh "git fetch origin/master"
+                sh "git fetch origin"
                 sh "git branch"
             }
 
