@@ -86,7 +86,7 @@ pipeline {
                 color: 'danger';
 
 
-                jiraNewIssue issue: testIssue, site: 'JIRA T';
+                jiraNewIssue issue: testIssue;
         }
 
 
