@@ -81,14 +81,18 @@ pipeline {
                 color: 'good'
         }
         failure{
+            steps {
                 slackSend channel: '#builds',
-                message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
-                color: 'danger'
+                        message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
+                        color: 'danger'
+            }
 
-
+            steps {
                 response = jiraNewIssue issue: testIssue, site: 'JIRA T'
                 echo response.successful.toString()
                 echo response.data.toString()
+            }
+
         }
 
 
