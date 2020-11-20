@@ -2,13 +2,6 @@
 
 pipeline {
 
-// Set up local variables for your pipeline
-    environment {
-        // test variable: 0=success, 1=fail; must be string
-        doError = '0'
-        BUILD_USER = ''
-    }
-
     agent any
 
     stages {
@@ -72,11 +65,16 @@ pipeline {
 
     post{
 
+        always{
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false,
+                         reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html',
+                         reportName: 'HTML Report', reportTitles: ''])
+        }
+
         success{
                 slackSend channel: '#builds',
                 message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
                 color: 'good'
-                junit 'app/build/reports/**/*.xml'
         }
         failure{
                 slackSend channel: '#builds',
