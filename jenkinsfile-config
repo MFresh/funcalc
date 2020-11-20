@@ -76,7 +76,7 @@ pipeline {
                 slackSend channel: '#builds',
                 message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
                 color: 'good'
-                junit 'build/reports/**/*.xml'
+                junit 'build/reports/lint-results.xml'
         }
         failure{
                 slackSend channel: '#builds',
