@@ -2,7 +2,7 @@
 def testIssue = [fields: [ project: [key: 'FUNCALC'],
                            summary: 'New JIRA Created from Jenkins.',
                            description: 'New JIRA Created from Jenkins.',
-                           issuetype: [id: '2']]]
+                           issuetype: [name: 'Bug']]]
 
 pipeline {
 
