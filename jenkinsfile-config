@@ -86,7 +86,7 @@ pipeline {
                 color: 'danger';
 
 
-                jiraNewIssue issue: testIssue, site: 'https://mfresco.atlassian.net';
+                jiraNewIssue issue: testIssue, site: 'mfresco_site';
         }
 
 
