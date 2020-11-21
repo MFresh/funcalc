@@ -80,6 +80,23 @@ pipeline {
                          reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html',
                          reportName: 'Tests Report', reportTitles: ''])
 
+            junit (
+                    testResults: 'app/build/test-results/testReleaseUnitTest/*.xml',
+                    testDataPublishers: [
+                            jiraTestResultReporter(
+                                    configs: [
+                                            jiraStringField(fieldKey: 'summary', value: 'Summary_Test'),
+                                            jiraStringField(fieldKey: 'description', value: 'Description_Test'),
+                                    ],
+                                    projectKey: 'FUNCALC',
+                                    issueType: '1',
+                                    autoRaiseIssue: false,
+                                    autoResolveIssue: false,
+                                    autoUnlinkIssue: false,
+                            )
+                    ]
+            )
+
         }
 
         success{
@@ -93,9 +110,9 @@ pipeline {
                 color: 'danger';
 
 
-                jiraNewIssue issue: testIssue, site: 'mfresco_site';
 
 
+                //jiraNewIssue issue: testIssue, site: 'mfresco_site';
         }
 
 
