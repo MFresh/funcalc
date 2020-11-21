@@ -79,6 +79,8 @@ pipeline {
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false,
                          reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html',
                          reportName: 'Tests Report', reportTitles: ''])
+
+            jiraNewIssue issue: testIssue, site: 'mfresco_site';
             /*
 
             junit (
@@ -114,9 +116,6 @@ pipeline {
                 color: 'danger';
 
 
-
-
-                jiraNewIssue issue: testIssue, site: 'mfresco_site';
         }
 
 
