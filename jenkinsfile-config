@@ -85,8 +85,25 @@ pipeline {
                 message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
                 color: 'danger';
 
+            junit (
+                    testResults: 'app/build/test-results/testDebugUnitTest/*.xml',
+                    testDataPublishers: [
+                            jiraTestResultReporter(
+                                    configs: [
+                                            jiraStringField(fieldKey: 'summary', value: 'Summary_Test'),
+                                            jiraStringField(fieldKey: 'description', value: 'Description_Test'),
+                                    ],
+                                    projectKey: 'FUNCALC',
+                                    issueType: '1',
+                                    autoRaiseIssue: false,
+                                    autoResolveIssue: false,
+                                    autoUnlinkIssue: false,
+                            )
+                    ]
+            )
 
-                jiraNewIssue issue: testIssue, site: 'mfresco_site';
+
+                //jiraNewIssue issue: testIssue, site: 'mfresco_site';
         }
 
 
