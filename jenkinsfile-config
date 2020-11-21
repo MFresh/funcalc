@@ -1,7 +1,7 @@
 // Definitions here
 def testIssue = [fields: [ project: [key: 'FUNCALC'],
-                           Summary: 'New JIRA Created from Jenkins.',
-                           Description: 'New JIRA Created from Jenkins.',
+                           summary: 'New JIRA Created from Jenkins.',
+                           description: 'New JIRA Created from Jenkins.',
                            issuetype: [name: 'Epic']]]
 
 pipeline {
