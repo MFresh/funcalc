@@ -92,7 +92,7 @@ pipeline {
                 color: 'danger';
 
             junit (
-                    testResults: 'app/build/test-results/testDebugUnitTest/*.xml',
+                    testResults: 'app/build/test-results/testReleaseUnitTest/*.xml',
                     testDataPublishers: [
                             jiraTestResultReporter(
                                     configs: [
