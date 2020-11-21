@@ -79,6 +79,7 @@ pipeline {
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false,
                          reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html',
                          reportName: 'Tests Report', reportTitles: ''])
+            /*
 
             junit (
                     testResults: 'app/build/test-results/testReleaseUnitTest/*.xml',
@@ -97,6 +98,9 @@ pipeline {
                     ]
             )
 
+
+             */
+
         }
 
         success{
@@ -112,7 +116,7 @@ pipeline {
 
 
 
-                //jiraNewIssue issue: testIssue, site: 'mfresco_site';
+                jiraNewIssue issue: testIssue, site: 'mfresco_site';
         }
 
 
