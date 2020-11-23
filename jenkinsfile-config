@@ -9,6 +9,10 @@ pipeline {
 
     agent any
 
+    parameters {
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+    }
+
     stages {
 
         stage('Slack - Notify Start Build'){
@@ -49,14 +53,9 @@ pipeline {
 
         stage('Git - Merge to Master'){
             steps {
-                sh "git fetch"
-                sh "git branch"
                 sh "git checkout origin/master"
-                sh "git branch"
-                sh "git pull origin"
-                sh "git branch"
                 sh "git merge origin/feature1"
-                sh "git push origin"
+                sh "git push origin HEAD:master"
             }
 
         }
