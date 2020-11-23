@@ -1,0 +1,134 @@
+// Definitions here
+def testIssue = [fields: [ project: [key: 'FUNCALC'],
+                           summary: 'New JIRA Created from Jenkins.',
+                           description: 'New JIRA Created from Jenkins.',
+                            myfield: 'This is my field',
+                           issuetype: [name: 'Bug']]]
+
+pipeline {
+
+    agent any
+
+    parameters {
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+    }
+
+    stages {
+
+        stage('Slack - Notify Start Build'){
+                steps {
+                     slackSend channel: '#builds',
+                     message: "Started ${env.JOB_NAME} with build #${BUILD_NUMBER}"
+                }
+            }
+
+        stage('Clean Project') {
+            steps {
+                sh './gradlew clean'
+            }
+        }
+
+        stage('Gradle Build') {
+            steps {
+                sh './gradlew build'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                  withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonarqube_integration') {
+                    sh './gradlew sonarqube'
+                  }
+            }
+        }
+
+        stage('Manual Approval - To Deploy?'){
+            steps {
+                input message: "Deploy to prod?"
+            }
+
+        }
+
+
+
+        stage('Git - Merge to Master'){
+            steps {
+                sh "git checkout origin/master"
+                sh "git merge origin/feature1"
+                sh "git push origin HEAD:master"
+            }
+
+        }
+
+        /*
+
+
+
+        stage('Publish to App Center') {
+                    steps {
+                        appCenter apiToken: 'f1e91523c76ccd9caa11a3e5894f78efc72bcdf9',
+                        appName: 'FunCalc',
+                        distributionGroups: 'testers',
+                        ownerName: 'mfresco95-gmail.com',
+                        pathToApp: 'app/build/outputs/apk/debug/app-debug.apk'
+                    }
+                }
+
+
+         */
+
+
+    }
+
+    post{
+
+        always{
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false,
+                         reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html',
+                         reportName: 'Tests Report', reportTitles: ''])
+
+            /*
+
+            jiraNewIssue issue: testIssue, site: 'mfresco_site';
+
+
+            junit (
+                    testResults: 'app/build/test-results/testReleaseUnitTest/*.xml',
+                    testDataPublishers: [
+                            jiraTestResultReporter(
+                                    configs: [
+                                            jiraStringField(fieldKey: 'summary', value: 'Summary_Test'),
+                                            jiraStringField(fieldKey: 'description', value: 'Description_Test'),
+                                    ],
+                                    projectKey: 'FUNCALC',
+                                    issueType: '1',
+                                    autoRaiseIssue: false,
+                                    autoResolveIssue: false,
+                                    autoUnlinkIssue: false,
+                            )
+                    ]
+            )
+
+
+             */
+
+        }
+
+        success{
+                slackSend channel: '#builds',
+                message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
+                color: 'good'
+        }
+        failure{
+                slackSend channel: '#builds',
+                message: "${env.JOB_NAME} - #${BUILD_NUMBER} finished with status: *${currentBuild.currentResult}*.",
+                color: 'danger';
+
+
+        }
+
+
+    }
+
+
+}
