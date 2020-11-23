@@ -1,6 +1,8 @@
 // Definitions here
 def testIssue = [fields: [ project: [key: 'FUNCALC'],
+                           summary: 'New JIRA Created from Jenkins.',
                            description: 'New JIRA Created from Jenkins.',
+                            myfield: 'This is my field',
                            issuetype: [name: 'Bug']]]
 
 pipeline {
@@ -47,6 +49,7 @@ pipeline {
 
         stage('Git - Merge to Master'){
             steps {
+                sh "git branch"
                 sh "git checkout origin/master"
                 sh "git merge origin/feature1"
                 sh "git push origin HEAD:master"
