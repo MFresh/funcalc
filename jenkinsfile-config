@@ -51,8 +51,10 @@ pipeline {
             steps {
                 sh "git branch"
                 sh "git checkout origin/master"
+                sh "git branch"
+                sh "git pull"
                 sh "git merge origin/feature1"
-                sh "git push origin HEAD:master"
+                sh "git push origin"
             }
 
         }
