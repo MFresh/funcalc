@@ -2,8 +2,7 @@ package com.example.funcalc
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
+import com.example.funcalc.R
 
 class MainActivity : AppCompatActivity() {
 

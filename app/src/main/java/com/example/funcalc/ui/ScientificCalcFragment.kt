@@ -1,4 +1,4 @@
-package com.example.funcalc.scientific
+package com.example.funcalc.ui
 
 import android.os.Bundle
 import android.view.*
