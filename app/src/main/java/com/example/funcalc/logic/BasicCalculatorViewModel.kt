@@ -214,6 +214,17 @@ class BasicCalculatorViewModel: ViewModel() {
 
     }
 
+    fun setViewElements(myView1: TextView, myView2: TextView, myViewOpr: TextView){
+
+        if(operand1 != null)
+            myView1.text = operand1
+        if(operand2 != null)
+            myView2.text = operand2
+        if(operator != null)
+            myViewOpr.text = operator.toString()
+
+    }
+
 
 
 
