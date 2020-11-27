@@ -4,11 +4,6 @@ import android.content.Context
 import android.widget.TextView
 import androidx.test.core.app.ApplicationProvider
 import com.example.funcalc.logic.BasicCalculatorViewModel
-import org.junit.Test
-
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.runner.RunWith
 
 /**
  * Example local unit test, which will execute on the development machine (host).
