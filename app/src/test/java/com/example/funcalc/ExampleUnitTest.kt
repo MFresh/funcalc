@@ -8,13 +8,16 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.runner.RunWith
 import org.junit.runner.manipulation.Ordering
+import org.robolectric.RobolectricTestRunner
 
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+@RunWith(RobolectricTestRunner::class)
 class ExampleUnitTest {
 
     private val myBasicCalcVM_test = BasicCalculatorViewModel()
