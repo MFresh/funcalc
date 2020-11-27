@@ -22,6 +22,8 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 class ExampleUnitTest {
 
+    /*
+
     private val myBasicCalcVM_test = BasicCalculatorViewModel()
 
     @Before
@@ -82,6 +84,8 @@ class ExampleUnitTest {
 
 
     }
+
+     */
 
 
 }
