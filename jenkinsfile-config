@@ -38,6 +38,12 @@ pipeline {
             }
         }
 
+        stage('Gradle Test') {
+            steps {
+                sh './gradlew test'
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                   withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'sonarqube_integration') {
