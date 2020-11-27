@@ -1,10 +1,5 @@
 package com.example.funcalc
 
-import android.content.Context
-import android.widget.TextView
-import androidx.test.core.app.ApplicationProvider
-import com.example.funcalc.logic.BasicCalculatorViewModel
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
