@@ -42,43 +42,43 @@ class BasicCalcFragment : Fragment() {
 
 
         view.findViewById<Button>(R.id.button_0).setOnClickListener {
-            myBasicCalcVM.appendOperand1("0", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"0", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_1).setOnClickListener {
-            myBasicCalcVM.appendOperand1("1", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"1", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_2).setOnClickListener {
-            myBasicCalcVM.appendOperand1("2", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"2", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_3).setOnClickListener {
-            myBasicCalcVM.appendOperand1("3", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"3", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_4).setOnClickListener {
-            myBasicCalcVM.appendOperand1("4", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"4", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_5).setOnClickListener {
-            myBasicCalcVM.appendOperand1("5", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"5", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_6).setOnClickListener {
-            myBasicCalcVM.appendOperand1("6", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"6", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_7).setOnClickListener {
-            myBasicCalcVM.appendOperand1("7", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"7", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_8).setOnClickListener {
-            myBasicCalcVM.appendOperand1("8", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"8", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_9).setOnClickListener {
-            myBasicCalcVM.appendOperand1("9", operand1View, operand2View)
+            myBasicCalcVM.appendOperand1(requireView(),"9", operand1View, operand2View)
         }
 
         view.findViewById<Button>(R.id.button_plus).setOnClickListener {

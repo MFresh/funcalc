@@ -19,7 +19,7 @@ class BasicCalculatorViewModel: ViewModel() {
     var isDecimal2Set: Boolean = false
 
 
-    fun appendOperand1(myText: String, myView1: TextView, myView2: TextView){
+    fun appendOperand1(myView: View, myText: String, myView1: TextView, myView2: TextView){
 
         if(!gotAResult){ // we don't have a result yet
 
@@ -51,6 +51,15 @@ class BasicCalculatorViewModel: ViewModel() {
                     }
                 }
 
+
+                if(operand1?.length!! > 8){
+                    operand1 = operand1!!.subSequence(0, operand1!!.length-1).toString()
+                    Log.d("BASIC_CALC_VM", "New operand 1 is: $operand1")
+                    Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
+                }
+
+
+
                 myView1.text = operand1
             }
             else{   // already set operand1 and operator
@@ -80,6 +89,11 @@ class BasicCalculatorViewModel: ViewModel() {
                     }
                 }
 
+                if(operand2?.length!! > 8){
+                    operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
+                    Log.d("BASIC_CALC_VM", "New operand 2 is: $operand2")
+                    Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
+                }
 
                 myView2.text = operand2
 
@@ -117,6 +131,11 @@ class BasicCalculatorViewModel: ViewModel() {
                 }
 
 
+                if(operand2?.length!! > 8){
+                    operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
+                    Log.d("BASIC_CALC_VM", "New operand 2 is: $operand2")
+                    Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
+                }
 
                 myView2.text = operand2
 
@@ -148,7 +167,7 @@ class BasicCalculatorViewModel: ViewModel() {
             var result : Float? = null
 
             if(operand2Float == 0F && operator == '/'){
-                Snackbar.make(myView, "Error: Cannot divide by zero!", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(myView, "Error: Cannot divide by zero!", Snackbar.LENGTH_SHORT).show()
             }
             else{
                 when(operator){
