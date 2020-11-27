@@ -76,9 +76,9 @@ class ExampleUnitTest {
         assertEquals(myBasicCalcVM_test.isDecimal1Set, false)
         assertEquals(myBasicCalcVM_test.isDecimal2Set, false)
 
-        assertEquals(myView1_test.text, null)
-        assertEquals(myView2_test.text, null)
-        assertEquals(myViewOpr_test.text, null)
+        assertEquals(myView1_test.text, "")
+        assertEquals(myView2_test.text, "")
+        assertEquals(myViewOpr_test.text, "")
 
 
     }
