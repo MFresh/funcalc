@@ -38,10 +38,9 @@ pipeline {
             }
         }
 
-        stage('Gradle Test') {
+        stage('Gradle - Generate Coverage Report') {
             steps {
-                sh './gradlew test'
-                sh './gradlew createDebugAndroidTestCoverageReport'
+                sh './gradlew createDebugCoverageReport'
             }
         }
 
