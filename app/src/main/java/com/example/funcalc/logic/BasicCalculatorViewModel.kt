@@ -54,7 +54,6 @@ class BasicCalculatorViewModel: ViewModel() {
 
                 if(operand1?.length!! > 8){
                     operand1 = operand1!!.subSequence(0, operand1!!.length-1).toString()
-                    Log.d("BASIC_CALC_VM", "New operand 1 is: $operand1")
                     Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
                 }
 
@@ -91,7 +90,6 @@ class BasicCalculatorViewModel: ViewModel() {
 
                 if(operand2?.length!! > 8){
                     operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
-                    Log.d("BASIC_CALC_VM", "New operand 2 is: $operand2")
                     Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
                 }
 
@@ -133,7 +131,6 @@ class BasicCalculatorViewModel: ViewModel() {
 
                 if(operand2?.length!! > 8){
                     operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
-                    Log.d("BASIC_CALC_VM", "New operand 2 is: $operand2")
                     Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
                 }
 
