@@ -41,6 +41,7 @@ pipeline {
         stage('Gradle Test') {
             steps {
                 sh './gradlew test'
+                sh './gradlew jacocoTestReport'
             }
         }
 
