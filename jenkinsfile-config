@@ -48,7 +48,7 @@ pipeline {
 
         stage('Gradle - Generate Coverage Report') {
             steps {
-                sh './gradlew jacocoTestReport'
+                sh './gradlew createDebugCoverageReport'
             }
         }
 
