@@ -1,19 +1,18 @@
 // Definitions here
-def testIssue = [fields: [ project: [key: 'FUNCALC'],
-                           summary: 'New JIRA Created from Jenkins.',
-                           description: 'New JIRA Created from Jenkins.',
-                            myfield: 'This is my field',
-                           issuetype: [name: 'Bug']]]
 
 pipeline {
 
     agent any
 
 
+    /*
 
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
     }
+
+
+     */
 
 
 
@@ -67,6 +66,9 @@ pipeline {
 
 
         stage('Git - Merge to Master'){
+            when {
+                expression { MERGE_TO_MASTER }
+            }
             steps {
                 sh "git checkout origin/master"
                 sh "git merge origin/feature1"
