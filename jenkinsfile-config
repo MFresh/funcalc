@@ -13,7 +13,13 @@ pipeline {
         booleanParam(name: 'TO_PRODUCTION', defaultValue: false, description: 'This parameter specifies if the build result must be published')
     }
 
-
+    triggers {
+        cron('* * * * *')
+        parameterizedCron('''
+            */30 * * * * %BRANCH=feature1
+            */45 * * * * %BRANCH=feature2
+        ''')
+    }
 
 
 
