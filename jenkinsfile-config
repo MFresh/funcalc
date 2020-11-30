@@ -38,11 +38,16 @@ pipeline {
             }
         }
 
+        /*
+
         stage('Gradle - Generate Coverage Report') {
             steps {
                 sh './gradlew createDebugCoverageReport'
             }
         }
+
+
+         */
 
         stage('SonarQube Analysis') {
             steps {
