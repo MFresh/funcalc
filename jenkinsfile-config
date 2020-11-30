@@ -14,7 +14,6 @@ pipeline {
     }
 
     triggers {
-        cron('* * * * *')
         parameterizedCron('''
             */30 * * * * %BRANCH=feature1
             */45 * * * * %BRANCH=feature2
