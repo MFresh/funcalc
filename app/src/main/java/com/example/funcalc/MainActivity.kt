@@ -1,11 +1,14 @@
 package com.example.funcalc
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
+import androidx.fragment.app.viewModels
+import com.example.funcalc.R
+import com.example.funcalc.logic.BasicCalculatorViewModel
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

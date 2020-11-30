@@ -1,4 +1,4 @@
-package com.example.funcalc.basic
+package com.example.funcalc.ui
 
 import android.os.Bundle
 import android.view.*
@@ -8,9 +8,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.funcalc.R
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class BasicCalcFragment : Fragment() {
+class ScientificCalcFragment : Fragment() {
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -20,20 +20,20 @@ class BasicCalcFragment : Fragment() {
         setHasOptionsMenu(true)
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_basic_calc, container, false)
+        return inflater.inflate(R.layout.fragment_scientific_calc, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_1).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        view.findViewById<Button>(R.id.button_second).setOnClickListener {
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        activity?.menuInflater?.inflate(R.menu.menu_basic, menu)
+        activity?.menuInflater?.inflate(R.menu.menu_scientific, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -41,13 +41,14 @@ class BasicCalcFragment : Fragment() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_switch_to_scientific -> {
+            R.id.action_switch_to_basic -> {
 
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 
 }
