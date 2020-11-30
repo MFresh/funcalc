@@ -67,7 +67,7 @@ pipeline {
 
         stage('Git - Merge to Master'){
             when {
-                expression { MERGE_TO_MASTER }
+                expression { params.MERGE_TO_MASTER }
             }
             steps {
                 sh "git checkout origin/master"
