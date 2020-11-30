@@ -72,7 +72,7 @@ pipeline {
             }
             steps {
                 sh "git checkout origin/master"
-                sh "git merge origin/{BRANCH}"
+                sh "git merge origin/{params.BRANCH}"
                 sh "git push origin HEAD:master"
             }
 
