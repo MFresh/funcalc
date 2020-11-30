@@ -5,14 +5,15 @@ pipeline {
     agent any
 
 
-    /*
+
 
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+        booleanParam(name: 'MERGE_TO_MASTER', defaultValue: false, description: 'This parameter specifies if the merge to master must be performed')
     }
 
 
-     */
+
 
 
 
