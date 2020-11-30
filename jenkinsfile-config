@@ -15,8 +15,8 @@ pipeline {
 
     triggers {
         parameterizedCron('''
-            */30 * * * * %BRANCH=feature1
-            */45 * * * * %BRANCH=feature2
+            H/30 * * * * %BRANCH=feature1
+            H/45 * * * * %BRANCH=feature2
         ''')
     }
 
