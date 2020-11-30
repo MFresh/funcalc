@@ -8,7 +8,7 @@ pipeline {
 
 
     parameters {
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH'
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH', description: 'This parameter specifies which branch must be built'
         booleanParam(name: 'MERGE_TO_MASTER', defaultValue: false, description: 'This parameter specifies if the merge to master must be performed')
         booleanParam(name: 'TO_PRODUCTION', defaultValue: false, description: 'This parameter specifies if the build result must be published')
     }
@@ -72,9 +72,9 @@ pipeline {
                 expression { params.MERGE_TO_MASTER }
             }
             steps {
-                echo ${params.BRANCH}
+                echo "${params.BRANCH}"
                 sh "git checkout origin/master"
-                sh "git merge origin/{params.BRANCH}"
+                sh "git merge origin/${params.BRANCH}"
                 sh "git push origin HEAD:master"
             }
 
