@@ -1,31 +1,21 @@
-package com.example.funcalc
+package com.example.funcalc.logic
 
 import android.content.Context
 import android.widget.TextView
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.funcalc.logic.BasicCalculatorViewModel
-
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.Before
 
 import org.junit.Assert.*
-import org.junit.Before
-import org.junit.runners.JUnit4
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-@RunWith(JUnit4::class)
-class ExampleInstrumentedTest{
-
-    private val myBasicCalcVM_test = BasicCalculatorViewModel()
+@RunWith(RobolectricTestRunner::class)
+class BasicCalculatorViewModelTest {
 
     @Before
-    fun clear_BasicCalcVM(){
+    fun setUp() {
         myBasicCalcVM_test.operand1 = null
         myBasicCalcVM_test.operand2 = null
         myBasicCalcVM_test.operator = null
@@ -34,6 +24,9 @@ class ExampleInstrumentedTest{
         myBasicCalcVM_test.isDecimal1Set= false
         myBasicCalcVM_test.isDecimal2Set= false
     }
+
+
+    private val myBasicCalcVM_test = BasicCalculatorViewModel()
 
     @Test
     fun addition_isCorrect() {
