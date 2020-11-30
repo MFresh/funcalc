@@ -93,8 +93,8 @@ dependencies {
 task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
 
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.setEnabled(true)
+        html.setEnabled(true)
     }
 
     def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
