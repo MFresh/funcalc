@@ -10,6 +10,8 @@ import com.google.android.material.snackbar.Snackbar
 
 class BasicCalculatorViewModel: ViewModel() {
 
+    val TOO_MANY_NUMBERS_STRING = "Sorry, too many numbers..."
+
     var operand1 : String? = null
     var operand2 : String? = null
     var operator : Char? = null
@@ -54,7 +56,7 @@ class BasicCalculatorViewModel: ViewModel() {
 
                 if(operand1?.length!! > 8){
                     operand1 = operand1!!.subSequence(0, operand1!!.length-1).toString()
-                    Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(myView, TOO_MANY_NUMBERS_STRING, Snackbar.LENGTH_SHORT).show()
                 }
 
 
@@ -90,7 +92,7 @@ class BasicCalculatorViewModel: ViewModel() {
 
                 if(operand2?.length!! > 8){
                     operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
-                    Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(myView, TOO_MANY_NUMBERS_STRING, Snackbar.LENGTH_SHORT).show()
                 }
 
                 myView2.text = operand2
@@ -131,7 +133,7 @@ class BasicCalculatorViewModel: ViewModel() {
 
                 if(operand2?.length!! > 8){
                     operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
-                    Snackbar.make(myView, "Sorry, too many numbers...", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(myView, TOO_MANY_NUMBERS_STRING, Snackbar.LENGTH_SHORT).show()
                 }
 
                 myView2.text = operand2
