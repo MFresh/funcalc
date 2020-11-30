@@ -10,6 +10,7 @@ pipeline {
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH'
         booleanParam(name: 'MERGE_TO_MASTER', defaultValue: false, description: 'This parameter specifies if the merge to master must be performed')
+        booleanParam(name: 'TO_PRODUCTION', defaultValue: false, description: 'This parameter specifies if the build result must be published')
     }
 
 
@@ -71,6 +72,7 @@ pipeline {
                 expression { params.MERGE_TO_MASTER }
             }
             steps {
+                echo ${params.BRANCH}
                 sh "git checkout origin/master"
                 sh "git merge origin/{params.BRANCH}"
                 sh "git push origin HEAD:master"
@@ -80,22 +82,25 @@ pipeline {
 
 
 
-    /*
+
 
         stage('Publish to App Center') {
-                    steps {
-                        appCenter apiToken: 'f1e91523c76ccd9caa11a3e5894f78efc72bcdf9',
+            when {
+                expression { params.TO_PRODUCTION }
+            }
+            steps {
+                appCenter apiToken: 'f1e91523c76ccd9caa11a3e5894f78efc72bcdf9',
                         appName: 'FunCalc',
                         distributionGroups: 'testers',
                         ownerName: 'mfresco95-gmail.com',
                         pathToApp: 'app/build/outputs/apk/debug/app-debug.apk'
-                    }
-                }
+            }
+        }
 
 
 
 
-     */
+
 
 
     }
