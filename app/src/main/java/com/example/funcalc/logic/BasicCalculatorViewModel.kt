@@ -21,19 +21,18 @@ class BasicCalculatorViewModel: ViewModel() {
     var isDecimal2Set: Boolean = false
 
 
-    fun appendOperand1(myView: View, myText: String, myOp1View: TextView, myOp2View: TextView){
+    fun appendOperand(myView: View, myText: String, myOp1View: TextView, myOp2View: TextView){
 
 
-        val viewToWrite = whereToWrite()
-        Log.d("BASIC_CALC_VM", "Operand to modify: $viewToWrite")
+        val opToWrite = whichOpToModify()
 
-        if(viewToWrite == "OP1"){
+        if(opToWrite == "OP1"){
 
             howToWriteOp1(myText, myOp1View)
             writeOperand(myView, myOp1View, "OP1")
 
         }
-        else if (viewToWrite == "OP2"){
+        else if (opToWrite == "OP2"){
 
             howToWriteOp2(myText, myOp2View)
             writeOperand(myView, myOp2View, "OP2")
@@ -141,7 +140,7 @@ class BasicCalculatorViewModel: ViewModel() {
     }
 
 
-    private fun whereToWrite(): String?{
+    private fun whichOpToModify(): String?{
 
         return if(!gotAResult && operator == null ){
             "OP1"
