@@ -1,10 +1,7 @@
 package com.example.funcalc.logic
 
-import android.content.Context
-import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -19,6 +16,10 @@ class BasicCalculatorViewModel: ViewModel() {
     var gotAResult : Boolean = false
     var isDecimal1Set: Boolean = false
     var isDecimal2Set: Boolean = false
+
+    var operand1Float : Float? = null
+    var operand2Float : Float? = null
+    var result : Float? = null
 
 
     fun appendOperand(myView: View, myText: String, myOp1View: TextView, myOp2View: TextView){
@@ -54,12 +55,12 @@ class BasicCalculatorViewModel: ViewModel() {
 
     }
 
-    fun computeResult(myView: View, myView1 : TextView, myView2 : TextView, myViewOpr : TextView){
+    fun computeResult(myView: View, myView1: TextView, myView2: TextView, myViewOpr: TextView){
 
         if(operand2 != null){
-            val operand1Float : Float? = operand1?.toFloat()
-            val operand2Float : Float? = operand2?.toFloat()
-            var result : Float? = null
+            operand1Float = operand1?.toFloat()
+            operand2Float = operand2?.toFloat()
+            result = null
 
             if(operand2Float == 0F && operator == '/'){
                 Snackbar.make(myView, "Error: Cannot divide by zero!", Snackbar.LENGTH_SHORT).show()
