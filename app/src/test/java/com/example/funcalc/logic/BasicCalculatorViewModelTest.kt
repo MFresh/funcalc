@@ -80,6 +80,7 @@ class BasicCalculatorViewModelTest {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOpr_test = TextView(context_test)
+        myBasicCalcVM_test.operand1 = "21"
 
         myBasicCalcVM_test.setOperator('*', myViewOpr_test)
 
