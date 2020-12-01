@@ -140,7 +140,7 @@ class BasicCalculatorViewModel: ViewModel() {
     }
 
 
-    private fun whichOpToModify(): String?{
+    fun whichOpToModify(): String?{
 
         return if(!gotAResult && operator == null ){
             "OP1"
@@ -153,7 +153,7 @@ class BasicCalculatorViewModel: ViewModel() {
 
     }
 
-    private fun howToWriteOp1(myText: String, myOp1View: TextView){
+    fun howToWriteOp1(myText: String, myOp1View: TextView){
 
         if(myText == "0"){
 
@@ -185,7 +185,7 @@ class BasicCalculatorViewModel: ViewModel() {
     }
 
 
-    private fun howToWriteOp2(myText: String, myOp2View: TextView){
+    fun howToWriteOp2(myText: String, myOp2View: TextView){
 
         if(myText == "0"){
 
@@ -216,7 +216,7 @@ class BasicCalculatorViewModel: ViewModel() {
     }
 
 
-    private fun writeOperand(myView: View, viewToWrite: TextView, myOperand: String){
+    fun writeOperand(myView: View, viewToWrite: TextView, myOperand: String){
 
         if(myOperand == "OP1"){
             if(operand1?.length!! > 8){

@@ -76,7 +76,7 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_setOperator() {
+    fun test_setOperator_oprNotSet() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOpr_test = TextView(context_test)
@@ -86,6 +86,93 @@ class BasicCalculatorViewModelTest {
 
         assertEquals(myBasicCalcVM_test.operator, '*')
         assertEquals(myViewOpr_test.text, "*")
+
+    }
+
+    @Test
+    fun test_setOperator_oprSet() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myViewOpr_test = TextView(context_test)
+        myBasicCalcVM_test.operand1 = "21"
+        myBasicCalcVM_test.operator = '-'
+        myBasicCalcVM_test.isOprSet = true
+
+        myBasicCalcVM_test.setOperator('*', myViewOpr_test)
+
+        assertEquals(myBasicCalcVM_test.operator, '-')
+        assertEquals(myViewOpr_test.text, "")
+
+    }
+
+    @Test
+    fun test_setViewElements_opsAreNull() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+        val myViewOpr_test = TextView(context_test)
+
+        myBasicCalcVM_test.setViewElements(myView1_test, myView2_test, myViewOpr_test)
+
+        assertEquals(myView1_test.text, "")
+        assertEquals(myView2_test.text, "")
+        assertEquals(myViewOpr_test.text, "")
+
+
+    }
+
+    @Test
+    fun test_setViewElements_opsAreNotNull() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+        val myViewOpr_test = TextView(context_test)
+        myBasicCalcVM_test.operand1 = "21"
+        myBasicCalcVM_test.operand2 = "10"
+        myBasicCalcVM_test.operator = '-'
+
+        myBasicCalcVM_test.setViewElements(myView1_test, myView2_test, myViewOpr_test)
+
+        assertEquals(myView1_test.text, "21")
+        assertEquals(myView2_test.text, "10")
+        assertEquals(myViewOpr_test.text, "-")
+
+
+    }
+
+    @Test
+    fun test_whichOpToModify_op1() {
+
+        val result = myBasicCalcVM_test.whichOpToModify()
+
+        assertEquals(result, "OP1")
+
+
+    }
+
+    @Test
+    fun test_whichOpToModify_op2() {
+
+        myBasicCalcVM_test.operator = '-'
+
+        val result = myBasicCalcVM_test.whichOpToModify()
+
+        assertEquals(result, "OP2")
+
+
+    }
+
+    @Test
+    fun test_whichOpToModify_none() {
+
+        myBasicCalcVM_test.gotAResult = true
+
+        val result = myBasicCalcVM_test.whichOpToModify()
+
+        assertEquals(result, null)
+
 
     }
 
