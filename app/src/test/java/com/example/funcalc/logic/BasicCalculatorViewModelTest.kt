@@ -25,6 +25,10 @@ class BasicCalculatorViewModelTest {
         myBasicCalcVM_test.isOprSet = false
         myBasicCalcVM_test.isDecimal1Set= false
         myBasicCalcVM_test.isDecimal2Set= false
+
+        myBasicCalcVM_test.operand1Float = null
+        myBasicCalcVM_test.operand2Float= null
+        myBasicCalcVM_test.result= null
     }
 
     @Test
