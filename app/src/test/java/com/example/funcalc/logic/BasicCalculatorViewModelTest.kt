@@ -178,10 +178,6 @@ class BasicCalculatorViewModelTest {
         myBasicCalcVM_test.isDecimal1Set= true
         myBasicCalcVM_test.isDecimal2Set= true
 
-        myBasicCalcVM_test.operand1Float = null
-        myBasicCalcVM_test.operand2Float = null
-        myBasicCalcVM_test.result = null
-
         myViewOp1_test.text = "21.3"
         myViewOp2_test.text = "10"
         myViewOpr_test.text = "*"
@@ -321,6 +317,57 @@ class BasicCalculatorViewModelTest {
 
 
     }
+
+    @Test
+    fun test_writeOperand_op1Correct() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView_test = View(context_test)
+
+        myBasicCalcVM_test.operand1 = "21"
+
+        myBasicCalcVM_test.writeOperand(myView_test, myView1_test, "OP1")
+
+        assertEquals(myView1_test.text, "21")
+
+
+    }
+
+    @Test
+    fun test_writeOperand_op2Correct() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView2_test = TextView(context_test)
+        val myView_test = View(context_test)
+
+        myBasicCalcVM_test.operand2 = "21"
+
+        myBasicCalcVM_test.writeOperand(myView_test, myView2_test, "OP2")
+
+        assertEquals(myView2_test.text, "21")
+
+
+    }
+
+    @Test
+    fun test_writeOperand_wrongOp() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView2_test = TextView(context_test)
+        val myView_test = View(context_test)
+
+        myBasicCalcVM_test.operand1 = "11"
+        myBasicCalcVM_test.operand2 = "21"
+
+        myBasicCalcVM_test.writeOperand(myView_test, myView2_test, "OPX")
+
+        assertEquals(myView2_test.text, "")
+
+
+    }
+
+
 
 
 
