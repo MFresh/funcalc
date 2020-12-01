@@ -106,6 +106,21 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
+    fun test_setOperator_op1IsNull() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myViewOpr_test = TextView(context_test)
+        myBasicCalcVM_test.operator = '-'
+        myBasicCalcVM_test.isOprSet = true
+
+        myBasicCalcVM_test.setOperator('*', myViewOpr_test)
+
+        assertEquals(myBasicCalcVM_test.operator, '-')
+        assertEquals(myViewOpr_test.text, "")
+
+    }
+
+    @Test
     fun test_setViewElements_opsAreNull() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
