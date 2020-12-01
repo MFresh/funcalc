@@ -14,6 +14,8 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class BasicCalculatorViewModelTest {
 
+    private val myBasicCalcVM_test = BasicCalculatorViewModel()
+
     @Before
     fun setUp() {
         myBasicCalcVM_test.operand1 = null
@@ -24,9 +26,6 @@ class BasicCalculatorViewModelTest {
         myBasicCalcVM_test.isDecimal1Set= false
         myBasicCalcVM_test.isDecimal2Set= false
     }
-
-
-    private val myBasicCalcVM_test = BasicCalculatorViewModel()
 
     @Test
     fun addition_isCorrect() {
@@ -75,6 +74,21 @@ class BasicCalculatorViewModelTest {
 
 
     }
+
+    @Test
+    fun test_setOperator() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myViewOpr_test = TextView(context_test)
+
+        myBasicCalcVM_test.setOperator('*', myViewOpr_test)
+
+        assertEquals(myBasicCalcVM_test.operator, "*")
+        assertEquals(myViewOpr_test.text, "*")
+
+    }
+
+
 
 
 }
