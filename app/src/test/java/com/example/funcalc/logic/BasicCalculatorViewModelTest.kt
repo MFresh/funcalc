@@ -28,16 +28,6 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-
-    @Test
-    fun subtraction_isCorrect() {
-        assertNotEquals(2, 4 - 1)
-    }
-
-    @Test
     fun test_clearAll(){
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
@@ -76,7 +66,7 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_setOperator_oprNotSet() {
+    fun test_setOperator_op1IsNotNull_oprNotSet() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOpr_test = TextView(context_test)
@@ -90,7 +80,7 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_setOperator_oprSet() {
+    fun test_setOperator_op1IsNotNull_oprSet() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOpr_test = TextView(context_test)
@@ -106,7 +96,20 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_setOperator_op1IsNull() {
+    fun test_setOperator_op1IsNull_oprNotSet() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myViewOpr_test = TextView(context_test)
+
+        myBasicCalcVM_test.setOperator('*', myViewOpr_test)
+
+        assertEquals(myBasicCalcVM_test.operator, null)
+        assertEquals(myViewOpr_test.text, "")
+
+    }
+
+    @Test
+    fun test_setOperator_op1IsNull_oprSet() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOpr_test = TextView(context_test)
