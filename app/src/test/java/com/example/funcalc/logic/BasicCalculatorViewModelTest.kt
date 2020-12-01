@@ -1,6 +1,7 @@
 package com.example.funcalc.logic
 
 import android.content.Context
+import android.view.View
 import android.widget.TextView
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -35,16 +36,16 @@ class BasicCalculatorViewModelTest {
         val myView2_test = TextView(context_test)
         val myViewOpr_test = TextView(context_test)
 
-        myBasicCalcVM_test.operand1 = "21"
-        myBasicCalcVM_test.operand2 = "10"
+        myBasicCalcVM_test.operand1 = "21.3"
+        myBasicCalcVM_test.operand2 = "10.1"
         myBasicCalcVM_test.operator = '-'
         myBasicCalcVM_test.gotAResult = true
         myBasicCalcVM_test.isOprSet = true
         myBasicCalcVM_test.isDecimal1Set= true
         myBasicCalcVM_test.isDecimal2Set= true
 
-        myView1_test.text = "21"
-        myView2_test.text = "10"
+        myView1_test.text = "21.3"
+        myView2_test.text = "10.1"
         myViewOpr_test.text = "-"
 
 
@@ -120,6 +121,42 @@ class BasicCalculatorViewModelTest {
 
         assertEquals(myBasicCalcVM_test.operator, '-')
         assertEquals(myViewOpr_test.text, "")
+
+    }
+
+    @Test
+    fun test_compareResult_op2IsNull() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myViewOp1_test = TextView(context_test)
+        val myViewOp2_test = TextView(context_test)
+        val myViewOpr_test = TextView(context_test)
+        val myView_test = View(context_test)
+
+        myBasicCalcVM_test.operand1 = "21.3"
+        myBasicCalcVM_test.operator = '-'
+        myBasicCalcVM_test.gotAResult = true
+        myBasicCalcVM_test.isOprSet = true
+        myBasicCalcVM_test.isDecimal1Set= true
+
+        myViewOp1_test.text = "21.3"
+        myViewOpr_test.text = "-"
+
+        myBasicCalcVM_test.computeResult(myView_test, myViewOp1_test, myViewOp2_test, myViewOpr_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "21.3")
+        assertEquals(myBasicCalcVM_test.operand2, null)
+        assertEquals(myBasicCalcVM_test.operator, '-')
+        assertEquals(myBasicCalcVM_test.gotAResult, true)
+        assertEquals(myBasicCalcVM_test.isOprSet, true)
+        assertEquals(myBasicCalcVM_test.isDecimal1Set, true)
+        assertEquals(myBasicCalcVM_test.isDecimal2Set, false)
+
+        assertEquals(myViewOp1_test.text, "21.3")
+        assertEquals(myViewOp2_test.text, "")
+        assertEquals(myViewOpr_test.text, "-")
+
+
 
     }
 
