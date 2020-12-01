@@ -84,7 +84,7 @@ class BasicCalculatorViewModelTest {
 
         myBasicCalcVM_test.setOperator('*', myViewOpr_test)
 
-        assertEquals(myBasicCalcVM_test.operator, "*")
+        assertEquals(myBasicCalcVM_test.operator, '*')
         assertEquals(myViewOpr_test.text, "*")
 
     }
