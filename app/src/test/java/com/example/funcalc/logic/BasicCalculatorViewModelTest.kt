@@ -147,7 +147,7 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_compareResult_op2IsNull() {
+    fun test_computeResult_op2IsNull() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOp1_test = TextView(context_test)
@@ -184,7 +184,7 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_compareResult_op2Correct_Division() {
+    fun test_computeResult_op2Correct_Division() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOp1_test = TextView(context_test)
@@ -224,7 +224,7 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_compareResult_op2Correct_Multiplication() {
+    fun test_computeResult_op2Correct_Multiplication() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOp1_test = TextView(context_test)
@@ -264,7 +264,7 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_compareResult_op2Correct_Sum() {
+    fun test_computeResult_op2Correct_Sum() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOp1_test = TextView(context_test)
@@ -304,7 +304,7 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_compareResult_op2Correct_Subtraction() {
+    fun test_computeResult_op2Correct_Subtraction() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOp1_test = TextView(context_test)
@@ -343,10 +343,50 @@ class BasicCalculatorViewModelTest {
 
     }
 
+    @Test
+    fun test_computeResult_op2Correct_InvalidOpr() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myViewOp1_test = TextView(context_test)
+        val myViewOp2_test = TextView(context_test)
+        val myViewOpr_test = TextView(context_test)
+        val myView_test = View(context_test)
+
+        myBasicCalcVM_test.operand1 = "21.3"
+        myBasicCalcVM_test.operand2 = "10.2"
+        myBasicCalcVM_test.operator = '%'
+        myBasicCalcVM_test.gotAResult = false
+        myBasicCalcVM_test.isOprSet = true
+        myBasicCalcVM_test.isDecimal1Set= true
+        myBasicCalcVM_test.isDecimal2Set= true
+
+        myViewOp1_test.text = "21.3"
+        myViewOp2_test.text = "10.2"
+        myViewOpr_test.text = "%"
+
+        myBasicCalcVM_test.computeResult(myView_test, myViewOp1_test, myViewOp2_test, myViewOpr_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "21.3")
+        assertEquals(myBasicCalcVM_test.operand2, null)
+        assertEquals(myBasicCalcVM_test.operator, null)
+        assertEquals(myBasicCalcVM_test.gotAResult, true)
+        assertEquals(myBasicCalcVM_test.isOprSet, false)
+        assertEquals(myBasicCalcVM_test.isDecimal1Set, false)
+        assertEquals(myBasicCalcVM_test.isDecimal2Set, false)
+        assertEquals(myBasicCalcVM_test.operand1Float, 21.3F)
+        assertEquals(myBasicCalcVM_test.operand2Float, 10.2F)
+        assertEquals(myBasicCalcVM_test.result, 21.3F)
+
+        assertEquals(myViewOp1_test.text, "21.3")
+        assertEquals(myViewOp2_test.text, "")
+        assertEquals(myViewOpr_test.text, "")
+
+    }
+
     /*
 
     @Test
-    fun test_compareResult_divideByZero() {
+    fun test_computeResult_divideByZero() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myViewOp1_test = TextView(context_test)

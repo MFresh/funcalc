@@ -71,6 +71,7 @@ class BasicCalculatorViewModel: ViewModel() {
                     '-' -> result = operand1Float!! - operand2Float!!
                     '*' -> result = operand1Float!! * operand2Float!!
                     '/' -> result = operand1Float!! / operand2Float!!
+                    else -> result = operand1Float!!
                 }
 
                 operand1 = result.toString()
