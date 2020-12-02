@@ -490,7 +490,7 @@ class BasicCalculatorViewModelTest {
     }
 
 
-        @Test
+    @Test
     fun test_writeOperand_op1Correct() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
