@@ -154,6 +154,9 @@ class BasicCalculatorViewModelTest {
         assertEquals(myBasicCalcVM_test.isOprSet, true)
         assertEquals(myBasicCalcVM_test.isDecimal1Set, true)
         assertEquals(myBasicCalcVM_test.isDecimal2Set, false)
+        assertEquals(myBasicCalcVM_test.operand1Float, null)
+        assertEquals(myBasicCalcVM_test.operand2Float, null)
+        assertEquals(myBasicCalcVM_test.result, null)
 
         assertEquals(myViewOp1_test.text, "21.3")
         assertEquals(myViewOp2_test.text, "")
@@ -488,7 +491,6 @@ class BasicCalculatorViewModelTest {
         assertEquals(myBasicCalcVM_test.operand2, "0")
 
     }
-
 
     @Test
     fun test_writeOperand_op1Correct() {
