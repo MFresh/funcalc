@@ -165,6 +165,46 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
+    fun test_compareResult_op2Correct_Division() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myViewOp1_test = TextView(context_test)
+        val myViewOp2_test = TextView(context_test)
+        val myViewOpr_test = TextView(context_test)
+        val myView_test = View(context_test)
+
+        myBasicCalcVM_test.operand1 = "21.3"
+        myBasicCalcVM_test.operand2 = "10"
+        myBasicCalcVM_test.operator = '/'
+        myBasicCalcVM_test.gotAResult = false
+        myBasicCalcVM_test.isOprSet = true
+        myBasicCalcVM_test.isDecimal1Set= true
+        myBasicCalcVM_test.isDecimal2Set= true
+
+        myViewOp1_test.text = "21.3"
+        myViewOp2_test.text = "10"
+        myViewOpr_test.text = "/"
+
+        myBasicCalcVM_test.computeResult(myView_test, myViewOp1_test, myViewOp2_test, myViewOpr_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "2.1299999")
+        assertEquals(myBasicCalcVM_test.operand2, null)
+        assertEquals(myBasicCalcVM_test.operator, null)
+        assertEquals(myBasicCalcVM_test.gotAResult, true)
+        assertEquals(myBasicCalcVM_test.isOprSet, false)
+        assertEquals(myBasicCalcVM_test.isDecimal1Set, false)
+        assertEquals(myBasicCalcVM_test.isDecimal2Set, false)
+        assertEquals(myBasicCalcVM_test.operand1Float, 21.3F)
+        assertEquals(myBasicCalcVM_test.operand2Float, 10F)
+        assertEquals(myBasicCalcVM_test.result, 2.1299999F)
+
+        assertEquals(myViewOp1_test.text, "2.1299999")
+        assertEquals(myViewOp2_test.text, "")
+        assertEquals(myViewOpr_test.text, "")
+
+    }
+
+    @Test
     fun test_compareResult_op2Correct_Multiplication() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
