@@ -32,7 +32,33 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_appendOperand() {
+    fun test_appendOperand_writeOp1() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+        val myViewOpr_test = TextView(context_test)
+        val myView_test = View(context_test)
+
+        myBasicCalcVM_test.operand1 = "21"
+
+        myView1_test.text = "21"
+
+
+        myBasicCalcVM_test.appendOperand(myView_test, "3", myView1_test, myView2_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "213")
+        assertEquals(myBasicCalcVM_test.operator, null)
+        assertEquals(myBasicCalcVM_test.operand2, null)
+        assertEquals(myView1_test.text, "213")
+        assertEquals(myViewOpr_test.text, "")
+        assertEquals(myView2_test.text, "")
+
+
+    }
+
+    @Test
+    fun test_appendOperand_writeOp2() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
         val myView1_test = TextView(context_test)
