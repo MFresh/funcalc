@@ -32,6 +32,37 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
+    fun test_appendOperand() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+        val myViewOpr_test = TextView(context_test)
+        val myView_test = View(context_test)
+
+        myBasicCalcVM_test.operand1 = "21"
+        myBasicCalcVM_test.operand2 = "13"
+        myBasicCalcVM_test.operator = '*'
+        myBasicCalcVM_test.isOprSet = true
+
+        myView1_test.text = "21"
+        myView2_test.text = "13"
+        myViewOpr_test.text = "*"
+
+
+        myBasicCalcVM_test.appendOperand(myView_test, "3", myView1_test, myView2_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "21")
+        assertEquals(myBasicCalcVM_test.operator, '*')
+        assertEquals(myBasicCalcVM_test.operand2, "133")
+        assertEquals(myView1_test.text, "21")
+        assertEquals(myViewOpr_test.text, "*")
+        assertEquals(myView2_test.text, "133")
+
+
+    }
+
+    @Test
     fun test_setOperator_op1IsNotNull_oprNotSet() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
