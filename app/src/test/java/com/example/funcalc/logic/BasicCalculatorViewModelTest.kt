@@ -333,6 +333,43 @@ class BasicCalculatorViewModelTest {
      */
 
     @Test
+    fun test_appendDecimal_op1GotAResult() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "23.1"
+        myBasicCalcVM_test.gotAResult = true
+
+        myView1_test.text = "23.1"
+
+
+        myBasicCalcVM_test.appendDecimal(myView1_test, myView2_test)
+
+        assertEquals(myView1_test.text, "23.1")
+        assertEquals(myBasicCalcVM_test.operand1, "23.1")
+
+
+    }
+
+    @Test
+    fun test_appendDecimal_op1Empty() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+
+
+        myBasicCalcVM_test.appendDecimal(myView1_test, myView2_test)
+
+        assertEquals(myView1_test.text, "")
+        assertEquals(myBasicCalcVM_test.operand1, null)
+
+
+    }
+
+    @Test
     fun test_appendDecimal_op1AlreadyDecimal_op2AlreadyDecimal() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
