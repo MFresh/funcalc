@@ -385,6 +385,7 @@ class BasicCalculatorViewModelTest {
 
         assertEquals(myView1_test.text, "23.")
         assertEquals(myBasicCalcVM_test.operand1, "23.")
+        assertEquals(myBasicCalcVM_test.isDecimal1Set, true)
 
 
     }
