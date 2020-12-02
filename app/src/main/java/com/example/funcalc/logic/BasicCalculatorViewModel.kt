@@ -58,8 +58,8 @@ class BasicCalculatorViewModel: ViewModel() {
     fun computeResult(myView: View, myView1: TextView, myView2: TextView, myViewOpr: TextView){
 
         if(operand2 != null){
-            operand1Float = operand1?.toFloat()
-            operand2Float = operand2?.toFloat()
+            operand1Float = operand1!!.toFloat()
+            operand2Float = operand2!!.toFloat()
             result = null
 
             if(operand2Float == 0F && operator == '/'){
