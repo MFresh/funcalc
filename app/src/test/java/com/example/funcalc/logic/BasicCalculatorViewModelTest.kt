@@ -32,44 +32,6 @@ class BasicCalculatorViewModelTest {
     }
 
     @Test
-    fun test_clearAll(){
-
-        val context_test = ApplicationProvider.getApplicationContext<Context>()
-        val myView1_test = TextView(context_test)
-        val myView2_test = TextView(context_test)
-        val myViewOpr_test = TextView(context_test)
-
-        myBasicCalcVM_test.operand1 = "21.3"
-        myBasicCalcVM_test.operand2 = "10.1"
-        myBasicCalcVM_test.operator = '-'
-        myBasicCalcVM_test.gotAResult = true
-        myBasicCalcVM_test.isOprSet = true
-        myBasicCalcVM_test.isDecimal1Set= true
-        myBasicCalcVM_test.isDecimal2Set= true
-
-        myView1_test.text = "21.3"
-        myView2_test.text = "10.1"
-        myViewOpr_test.text = "-"
-
-
-        myBasicCalcVM_test.clearAll(myView1_test, myView2_test, myViewOpr_test)
-
-        assertEquals(myBasicCalcVM_test.operand1, null)
-        assertEquals(myBasicCalcVM_test.operand2, null)
-        assertEquals(myBasicCalcVM_test.operator, null)
-        assertEquals(myBasicCalcVM_test.gotAResult, false)
-        assertEquals(myBasicCalcVM_test.isOprSet, false)
-        assertEquals(myBasicCalcVM_test.isDecimal1Set, false)
-        assertEquals(myBasicCalcVM_test.isDecimal2Set, false)
-
-        assertEquals(myView1_test.text, "")
-        assertEquals(myView2_test.text, "")
-        assertEquals(myViewOpr_test.text, "")
-
-
-    }
-
-    @Test
     fun test_setOperator_op1IsNotNull_oprNotSet() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
@@ -369,6 +331,113 @@ class BasicCalculatorViewModelTest {
 
 
      */
+
+    @Test
+    fun test_appendDecimal_op1AlreadyDecimal_op2AlreadyDecimal() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "23.1"
+        myBasicCalcVM_test.isDecimal1Set = true
+        myBasicCalcVM_test.operand2 = "10.3"
+        myBasicCalcVM_test.isDecimal2Set = true
+        myBasicCalcVM_test.operator = '*'
+        myBasicCalcVM_test.isOprSet = true
+
+        myView1_test.text = "23.1"
+        myView2_test.text = "10.3"
+
+
+        myBasicCalcVM_test.appendDecimal(myView1_test, myView2_test)
+
+        assertEquals(myView1_test.text, "23.1")
+        assertEquals(myView2_test.text, "10.3")
+
+
+    }
+
+    @Test
+    fun test_appendDecimal_op1AlreadyDecimal_oprNotSet() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "23.1"
+        myBasicCalcVM_test.isDecimal1Set = true
+
+        myView1_test.text = "23.1"
+
+        myBasicCalcVM_test.appendDecimal(myView1_test, myView2_test)
+
+        assertEquals(myView1_test.text, "23.1")
+        assertEquals(myView2_test.text, "")
+
+
+    }
+
+    @Test
+    fun test_appendDecimal_op1AlreadyDecimal_op2Empty() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "23.1"
+        myBasicCalcVM_test.isDecimal1Set = true
+        myBasicCalcVM_test.operator = '*'
+        myBasicCalcVM_test.isOprSet = true
+
+        myView1_test.text = "23.1"
+
+
+        myBasicCalcVM_test.appendDecimal(myView1_test, myView2_test)
+
+        assertEquals(myView1_test.text, "23.1")
+        assertEquals(myView2_test.text, "")
+
+
+    }
+
+    @Test
+    fun test_clearAll(){
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+        val myView2_test = TextView(context_test)
+        val myViewOpr_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "21.3"
+        myBasicCalcVM_test.operand2 = "10.1"
+        myBasicCalcVM_test.operator = '-'
+        myBasicCalcVM_test.gotAResult = true
+        myBasicCalcVM_test.isOprSet = true
+        myBasicCalcVM_test.isDecimal1Set= true
+        myBasicCalcVM_test.isDecimal2Set= true
+
+        myView1_test.text = "21.3"
+        myView2_test.text = "10.1"
+        myViewOpr_test.text = "-"
+
+
+        myBasicCalcVM_test.clearAll(myView1_test, myView2_test, myViewOpr_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, null)
+        assertEquals(myBasicCalcVM_test.operand2, null)
+        assertEquals(myBasicCalcVM_test.operator, null)
+        assertEquals(myBasicCalcVM_test.gotAResult, false)
+        assertEquals(myBasicCalcVM_test.isOprSet, false)
+        assertEquals(myBasicCalcVM_test.isDecimal1Set, false)
+        assertEquals(myBasicCalcVM_test.isDecimal2Set, false)
+
+        assertEquals(myView1_test.text, "")
+        assertEquals(myView2_test.text, "")
+        assertEquals(myViewOpr_test.text, "")
+
+
+    }
 
     @Test
     fun test_setViewElements_opsAreNull() {
