@@ -318,7 +318,94 @@ class BasicCalculatorViewModelTest {
 
     }
 
+
     @Test
+    fun test_howToWriteOp1_notZero_viewEmpty() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+
+        myBasicCalcVM_test.howToWriteOp1("5", myView1_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "5")
+
+    }
+
+    @Test
+    fun test_howToWriteOp1_notZero_viewNotEmpty() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "21"
+        myView1_test.text = "21"
+
+        myBasicCalcVM_test.howToWriteOp1("7", myView1_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "217")
+
+    }
+
+    @Test
+    fun test_howToWriteOp1_zeroNotDecimal_viewNotEmpty() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "2"
+        myView1_test.text = "2"
+
+        myBasicCalcVM_test.howToWriteOp1("0", myView1_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "20")
+
+    }
+
+    @Test
+    fun test_howToWriteOp1_zeroNotDecimal_viewEmpty() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+
+        myBasicCalcVM_test.howToWriteOp1("0", myView1_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "0.")
+
+    }
+
+    @Test
+    fun test_howToWriteOp1_zeroDecimal_viewNotEmpty() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "0.3"
+        myBasicCalcVM_test.isDecimal1Set = true
+        myView1_test.text = "0.3"
+
+        myBasicCalcVM_test.howToWriteOp1("0", myView1_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "0.30")
+
+    }
+
+    @Test
+    fun test_howToWriteOp1_zeroOnUnity() {
+
+        val context_test = ApplicationProvider.getApplicationContext<Context>()
+        val myView1_test = TextView(context_test)
+
+        myBasicCalcVM_test.operand1 = "0"
+        myView1_test.text = "0"
+
+        myBasicCalcVM_test.howToWriteOp1("0", myView1_test)
+
+        assertEquals(myBasicCalcVM_test.operand1, "0")
+
+    }
+
+
+        @Test
     fun test_writeOperand_op1Correct() {
 
         val context_test = ApplicationProvider.getApplicationContext<Context>()
