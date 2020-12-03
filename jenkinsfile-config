@@ -6,7 +6,7 @@ pipeline {
 
     agent any
 
-
+    currentBuild.description = "my new description"
 
 
     parameters {
@@ -45,19 +45,16 @@ pipeline {
                 expression { params.MERGE_TO_MASTER && params.BRANCH != "master" }
             }
             steps {
-                //sh "git branch"
-                //sh "git checkout origin/${params.BRANCH}"
-                //sh "git branch"
-                //sh "git status -sb --ahead-behind"
                 script{
                     sh "git rev-list --left-only --count origin/master...origin/${params.BRANCH}"
                     IS_BRANCH_BEHIND = sh(returnStdout: true, script: "git rev-list --left-only --count origin/master...origin/${params.BRANCH}" ).trim()
-                    if(IS_BRANCH_BEHIND != 0){
+                    if(IS_BRANCH_BEHIND != "0"){
                         echo "Remote branch ${params.BRANCH} is ${IS_BRANCH_BEHIND} commit behind"
                         currentBuild.result = 'ABORTED'
                         error('Your branch is not up with master: update and retry the build')
                     }
                 }
+                //sh "git checkout origin/${params.BRANCH}"
                 //sh "git merge origin/master"
                 //sh "git push origin HEAD:${params.BRANCH}"
             }
