@@ -27,7 +27,7 @@ pipeline {
         stage('Slack - Notify Start Build'){
                 steps {
                     script {
-                        currentBuild.displayName = "My custom build name"
+                        currentBuild.displayName = "#${BUILD_NUMBER} - My custom build name"
                         currentBuild.description = "My custom build description"
                     }
                      slackSend channel: '#builds',
