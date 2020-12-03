@@ -126,6 +126,8 @@ pipeline {
                          reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html',
                          reportName: 'Tests Report', reportTitles: ''])
 
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+
             /*
 
             jiraNewIssue issue: testIssue, site: 'mfresco_site';
