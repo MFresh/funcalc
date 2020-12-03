@@ -47,7 +47,7 @@ pipeline {
                 sh "git checkout origin/${params.BRANCH}"
                 sh "git branch"
                 sh "git merge origin/master"
-                sh "git push origin/${params.BRANCH}"
+                sh "git push origin/${params.BRANCH} HEAD:${params.BRANCH}"
             }
 
         }
