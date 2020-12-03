@@ -38,6 +38,20 @@ pipeline {
             }
         }
 
+        stage('Git - Check conflicts'){
+            when {
+                expression { params.MERGE_TO_MASTER && params.BRANCH != "master" }
+            }
+            steps {
+                sh "git branch"
+                sh "git checkout origin/${params.BRANCH}"
+                sh "git branch"
+                sh "git merge origin/master"
+                sh "git push origin HEAD:${params.BRANCH}"
+            }
+
+        }
+
         stage('Gradle Build') {
             steps {
                 sh './gradlew build'
