@@ -84,7 +84,7 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="@string/button_0"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/teal_200"
             android:textSize="32sp"
             android:textStyle="bold"
             app:backgroundTint="@color/white"
