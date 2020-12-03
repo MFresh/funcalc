@@ -45,13 +45,15 @@ pipeline {
                 expression { params.MERGE_TO_MASTER && params.BRANCH != "master" }
             }
             steps {
-                sh "git branch"
-                sh "git checkout origin/${params.BRANCH}"
-                sh "git branch"
-                sh "git status -sb --ahead-behind"
-                sh "git rev-list --left-only --count origin/master...origin/${params.BRANCH}"
-                IS_BRANCH_BEHIND = sh(returnStdout: true, script: "git rev-list --left-only --count origin/master...origin/${params.BRANCH}" ).trim()
-                echo "My variable is ${IS_BRANCH_BEHIND}"
+                //sh "git branch"
+                //sh "git checkout origin/${params.BRANCH}"
+                //sh "git branch"
+                //sh "git status -sb --ahead-behind"
+                script{
+                    sh "git rev-list --left-only --count origin/master...origin/${params.BRANCH}"
+                    IS_BRANCH_BEHIND = sh(returnStdout: true, script: "git rev-list --left-only --count origin/master...origin/${params.BRANCH}" ).trim()
+                    echo "My variable is ${IS_BRANCH_BEHIND}"
+                }
                 //sh "git merge origin/master"
                 //sh "git push origin HEAD:${params.BRANCH}"
             }
