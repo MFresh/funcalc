@@ -1,5 +1,7 @@
 // Definitions here
 
+def IS_BRANCH_BEHIND = ""
+
 pipeline {
 
     agent any
@@ -48,8 +50,8 @@ pipeline {
                 sh "git branch"
                 sh "git status -sb --ahead-behind"
                 sh "git rev-list --left-only --count origin/master...origin/${params.BRANCH}"
-                sh(returnStdout: true, script:"git rev-list --left-only --count origin/master...origin/${params.BRANCH}")
-                echo var
+                IS_BRANCH_BEHIND = sh(returnStdout: true, script:"git rev-list --left-only --count origin/master...origin/${params.BRANCH}")
+                echo "My variable is ${IS_BRANCH_BEHIND}"
                 //sh "git merge origin/master"
                 //sh "git push origin HEAD:${params.BRANCH}"
             }
