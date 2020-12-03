@@ -1,10 +1,7 @@
 package com.example.funcalc.logic
 
-import android.content.Context
-import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -20,129 +17,29 @@ class BasicCalculatorViewModel: ViewModel() {
     var isDecimal1Set: Boolean = false
     var isDecimal2Set: Boolean = false
 
-
-    fun appendOperand1(myView: View, myText: String, myView1: TextView, myView2: TextView){
-
-        if(!gotAResult){ // we don't have a result yet
-
-            if(!isOprSet){  // operand1 and operator not set yet
-
-                if(myText == "0"){
-
-                    if(!isDecimal1Set){
-
-                        if(myView1.text.isEmpty()){
-                            operand1 = myText.plus(".")
-                            isDecimal1Set = true
-                        } else if(myView1.text.first() != '0'){
-                            operand1 = operand1.plus(myText)
-                        }
-
-                    }
-                    else{
-                        operand1 = operand1.plus(myText)
-                    }
+    var operand1Float : Float? = null
+    var operand2Float : Float? = null
+    var result : Float? = null
 
 
-                }
-                else{
-                    operand1 = if(myView1.text.isEmpty()){
-                        myText
-                    } else{
-                        operand1.plus(myText)
-                    }
-                }
+    fun appendOperand(myView: View, myText: String, myOp1View: TextView, myOp2View: TextView){
 
 
-                if(operand1?.length!! > 8){
-                    operand1 = operand1!!.subSequence(0, operand1!!.length-1).toString()
-                    Snackbar.make(myView, TOO_MANY_NUMBERS_STRING, Snackbar.LENGTH_SHORT).show()
-                }
+        val opToWrite = whichOpToModify()
 
+        if(opToWrite == "OP1"){
 
-
-                myView1.text = operand1
-            }
-            else{   // already set operand1 and operator
-
-                if(myText == "0"){
-
-                    if(!isDecimal2Set){
-
-                        if(myView2.text.isEmpty()){
-                            operand2 = myText.plus(".")
-                            isDecimal2Set = true
-                        } else if(myView2.text.first() != '0'){
-                            operand2 = operand2.plus(myText)
-                        }
-
-                    }
-                    else{
-                        operand2 = operand2.plus(myText)
-                    }
-
-                }
-                else{
-                    operand2 = if(myView2.text.isEmpty()){
-                        myText
-                    } else{
-                        operand2.plus(myText)
-                    }
-                }
-
-                if(operand2?.length!! > 8){
-                    operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
-                    Snackbar.make(myView, TOO_MANY_NUMBERS_STRING, Snackbar.LENGTH_SHORT).show()
-                }
-
-                myView2.text = operand2
-
-
-            }
+            howToWriteOp1(myText, myOp1View)
+            writeOperand(myView, myOp1View, "OP1")
 
         }
-        else{   // we got a previous result
+        else if (opToWrite == "OP2"){
 
-            if(isOprSet){
+            howToWriteOp2(myText, myOp2View)
+            writeOperand(myView, myOp2View, "OP2")
 
-                if(myText == "0"){
-
-                    if(!isDecimal2Set){
-
-                        if(myView2.text.isEmpty()){
-                            operand2 = myText.plus(".")
-                            isDecimal2Set = true
-                        } else if(myView2.text.first() != '0'){
-                            operand2 = operand2.plus(myText)
-                        }
-
-                    }
-                    else{
-                        operand2 = operand2.plus(myText)
-                    }
-
-                }
-                else{
-                    operand2 = if(myView2.text.isEmpty()){
-                        myText
-                    } else{
-                        operand2.plus(myText)
-                    }
-                }
-
-
-                if(operand2?.length!! > 8){
-                    operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
-                    Snackbar.make(myView, TOO_MANY_NUMBERS_STRING, Snackbar.LENGTH_SHORT).show()
-                }
-
-                myView2.text = operand2
-
-            }
 
         }
-
-
 
 
 
@@ -158,12 +55,12 @@ class BasicCalculatorViewModel: ViewModel() {
 
     }
 
-    fun computeResult(myView: View, myView1 : TextView, myView2 : TextView, myViewOpr : TextView){
+    fun computeResult(myView: View, myView1: TextView, myView2: TextView, myViewOpr: TextView){
 
         if(operand2 != null){
-            val operand1Float : Float? = operand1?.toFloat()
-            val operand2Float : Float? = operand2?.toFloat()
-            var result : Float? = null
+            operand1Float = operand1!!.toFloat()
+            operand2Float = operand2!!.toFloat()
+            result = null
 
             if(operand2Float == 0F && operator == '/'){
                 Snackbar.make(myView, "Error: Cannot divide by zero!", Snackbar.LENGTH_SHORT).show()
@@ -174,6 +71,7 @@ class BasicCalculatorViewModel: ViewModel() {
                     '-' -> result = operand1Float!! - operand2Float!!
                     '*' -> result = operand1Float!! * operand2Float!!
                     '/' -> result = operand1Float!! / operand2Float!!
+                    else -> result = operand1Float!!
                 }
 
                 operand1 = result.toString()
@@ -240,6 +138,104 @@ class BasicCalculatorViewModel: ViewModel() {
             myView2.text = operand2
         if(operator != null)
             myViewOpr.text = operator.toString()
+
+    }
+
+
+    fun whichOpToModify(): String?{
+
+        return if(!gotAResult && operator == null ){
+            "OP1"
+        }
+        else if( operator != null ){
+            "OP2"
+        }
+        else null
+
+
+    }
+
+    fun howToWriteOp1(myText: String, myOp1View: TextView){
+
+        if(myText == "0"){
+
+            if(!isDecimal1Set){
+
+                if(myOp1View.text.isEmpty()){
+                    operand1 = myText.plus(".")
+                    isDecimal1Set = true
+                } else if(myOp1View.text.first() != '0'){
+                    operand1 = operand1.plus(myText)
+                }
+
+            }
+            else{
+                operand1 = operand1.plus(myText)
+            }
+
+
+        }
+        else{
+            operand1 = if(myOp1View.text.isEmpty()){
+                myText
+            } else{
+                operand1.plus(myText)
+            }
+        }
+
+
+    }
+
+
+    fun howToWriteOp2(myText: String, myOp2View: TextView){
+
+        if(myText == "0"){
+
+            if(!isDecimal2Set){
+
+                if(myOp2View.text.isEmpty()){
+                    operand2 = myText.plus(".")
+                    isDecimal2Set = true
+                } else if(myOp2View.text.first() != '0'){
+                    operand2 = operand2.plus(myText)
+                }
+
+            }
+            else{
+                operand2 = operand2.plus(myText)
+            }
+
+        }
+        else{
+            operand2 = if(myOp2View.text.isEmpty()){
+                myText
+            } else{
+                operand2.plus(myText)
+            }
+        }
+
+
+    }
+
+
+    fun writeOperand(myView: View, viewToWrite: TextView, myOperand: String){
+
+        if(myOperand == "OP1"){
+            if(operand1?.length!! > 8){
+                operand1 = operand1!!.subSequence(0, operand1!!.length-1).toString()
+                Snackbar.make(myView, TOO_MANY_NUMBERS_STRING, Snackbar.LENGTH_SHORT).show()
+            }
+            viewToWrite.text = operand1
+        }
+        else if(myOperand == "OP2"){
+                if(operand2?.length!! > 8){
+                    operand2 = operand2!!.subSequence(0, operand2!!.length-1).toString()
+                    Snackbar.make(myView, TOO_MANY_NUMBERS_STRING, Snackbar.LENGTH_SHORT).show()
+                }
+                viewToWrite.text = operand2
+        }
+
+
 
     }
 
