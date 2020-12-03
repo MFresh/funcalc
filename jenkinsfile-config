@@ -46,7 +46,7 @@ pipeline {
                 sh "git branch"
                 sh "git checkout origin/${params.BRANCH}"
                 sh "git branch"
-                sh "git status -sb"
+                sh "git status -sb --ahead-behind"
                 //sh "git merge origin/master"
                 //sh "git push origin HEAD:${params.BRANCH}"
             }
