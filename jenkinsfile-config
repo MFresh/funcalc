@@ -6,9 +6,6 @@ pipeline {
 
     agent any
 
-    currentBuild.description = "my new description"
-
-
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH', description: 'This parameter specifies which branch must be built'
         booleanParam(name: 'MERGE_TO_MASTER', defaultValue: false, description: 'This parameter specifies if the merge to master must be performed')
@@ -29,6 +26,10 @@ pipeline {
 
         stage('Slack - Notify Start Build'){
                 steps {
+                    script {
+                        currentBuild.displayName = "My custom build name"
+                        currentBuild.description = "My custom build description"
+                    }
                      slackSend channel: '#builds',
                      message: "Started ${env.JOB_NAME} with build #${BUILD_NUMBER}"
                 }
