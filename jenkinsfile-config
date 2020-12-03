@@ -63,11 +63,13 @@ pipeline {
             }
         }
 
-        stage('Manual Approval - To Deploy?'){
-            steps {
-                input message: "Deploy to prod?"
+        stage('Manual Approval - Merge to Master?'){
+            when {
+                expression { params.MERGE_TO_MASTER }
             }
-
+            steps {
+                input message: "Perform merge?"
+            }
         }
 
 
@@ -86,7 +88,14 @@ pipeline {
         }
 
 
-
+        stage('Manual Approval - Deploy to production?'){
+            when {
+                expression { params.TO_PRODUCTION }
+            }
+            steps {
+                input message: "Deploy to prod?"
+            }
+        }
 
 
         stage('Publish to App Center') {
